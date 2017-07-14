@@ -19,7 +19,7 @@ Vandoc takes another approach and does not provide any means for endpoint docume
 
 Another issue with current tools is that if you have mixed codebase, you will be forced to use different tools to generate documentation. Got CSS and JavaScript? To bad for you, since you will need to generate docs with one tools (and its whole ecosystem) for one language, and with completely another tool for another. Not to mention twice payload on already stated issue with integration in current environment above.
 
-Vandoc doesn't make any assumptions about your codebase. In fact, out of box it even doesn't know how to deal with any language. By adding Vandoc drivers or writing your own, Vandoc can be teached to deal with any kind of language and its specific documentation ways, be it comment blocks or whatever, parse them and return appropriate data. Vandoc doesn't care what driver makes internally while it returns data in enforced by Vandoc uniform data structure.
+Vandoc doesn't make any assumptions about your codebase. In fact, out of box it even doesn't know how to deal with any language. By adding Vandoc drivers or writing your own, allowing Vandoc to deal with any kind of language and its specific documentation ways, be it comment blocks or whatever, parse them and return appropriate data. Vandoc doesn't care what driver makes internally while it returns data in enforced by Vandoc uniform data structure.
 
 This takes us to another point. Vandoc tries to provide uniform interface for all languages, and thus it implies that all drivers should return data with specific, uniform [Vandoc data structure](#vandoc-data-structure), which is easy to understand and easy to use. This make documentation generation very similar for most languages.
 
@@ -27,7 +27,7 @@ Vandoc data structure is quite broad and covers most needs of currently popular 
 
 Note, that it doesn't restrict your comments or documentation format. It can be of any kind, but you just have to ensure that driver you use or write can parse them and that result of those documentations can then be dumped into Vandoc data structure.
 
-All this makes Vandoc ideal tools for cases, when you need to add documentation to your already existing project and make use of tools for pages output that already exist in prject, or as low-level toolkit to build more common styleguide generation system with pluggable and wide languages syntaxes support.
+All this makes Vandoc ideal tools for cases, when you need to add documentation to your already existing project and make use of tools for pages output that already exist in project, or as low-level toolkit to build more common styleguide generation system with pluggable and wide languages syntaxes support.
 
 ## How to use
 
@@ -54,7 +54,7 @@ Vandoc automatically will try load available drivers and map extensions to drive
 Specify extensions mapping if your are using non-standard extensions
 
 ```shell
-vandoc '**/*.{html,styles,js}' --cwd 'source/' --extensions 'html:nunjucks,styles:scss' --output 'vandoc.json'
+vandoc '**/*.{html,css,js}' --cwd 'source/' --extensions 'html:nunjucks,css:stylus' --output 'vandoc.json'
 ```
 
 Or use API:
@@ -80,7 +80,7 @@ Or you can store data directly in memory for further use:
 ```js
   import vandoc from `vandoc`
 
-  const vandocData = aysnc () => await vandoc('**/*.{html,styles,js}').hunt()
+  const vandocData = async () => await vandoc('**/*.{html,styles,js}').hunt()
 
   console.log(vandocData)
 ```
