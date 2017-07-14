@@ -89,7 +89,7 @@ The result will be data with specific [Vandoc data structure](#vandoc-data-struc
 
 Based on Vandoc data any tool can generate documentation however it likes. Use [Vanrose](#vanrose) to make work with data easier.
 
-Here is how to do simple thing in Nunjucks
+Simple example in Nunjucks
 
 ```jinja
 {% for v in vanrose(vandoc).language('nunjucks') %}
