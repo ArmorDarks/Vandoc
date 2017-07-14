@@ -1,0 +1,20 @@
+{
+  "name": "vandoc",
+  "version": "0.1.0",
+  "description": "Van Helsing hunts for vampires, Van Doc hunts for your docs",
+  "twitter": "@armordarks",
+  "homepage": "https://github.com/ArmorDarks/Vandoc",
+  "author": "Serj Lavrin (https://github.com/ArmorDarks)",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ArmorDarks/Vandoc.git"
+  },
+  "bugs": {
+    "url": "https://github.com/ArmorDarks/Vandoc/issues"
+  },
+  "dependencies": {},
+  "devDependencies": {},
+  "engines": {
+    "node": ">=6.0.0"
+  }
+}
