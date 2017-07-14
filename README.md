@@ -160,6 +160,7 @@ For each comment block documentation occurrence, driver returns data with follow
 const VandocDriverData = t.struct({
   filepath: t.String,
   language: t.String,
+  position: t.Number // in which order appears in source code
   type: t.String,
   name: t.String, // function name
   alias: t.String, // displayed name of function
