@@ -303,6 +303,7 @@ Head to [Vanrose repository](https://github.com/ArmorDarks/Vanrose) for details.
 * https://github.com/eslint/doctrine
 * https://github.com/jdalton/docdown
 * http://usejsdoc.org/
+* Remains of CSSDoc http://webkrauts.de/artikel/2007/stylesheets-kommentieren-mit-cssdoc
 
 ## Possible names:
 
