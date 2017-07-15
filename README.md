@@ -169,6 +169,7 @@ const VandocDriverData = t.struct({
   author: t.String,
   copyright: t.String,
   deprecated: t.union([t.String, t.Boolean]),
+  private: t.Boolean, // usually used to exlude from docs generation, unless `--private` flag provided
   ignore: t.Boolean,
   see: t.struct({ // refer to other namepath or description
     link: t.maybe(t.String), // namepath link or any other link, generates anchor
