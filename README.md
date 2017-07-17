@@ -161,7 +161,6 @@ const VandocDriverData = t.struct({
   language: t.String,
   filepath: t.String,
   position: t.Number // in which order appears in source code
-  lineno: t.Number // on which line appears in file
   type: t.String,
   name: t.String, // function name
   alias: t.String, // displayed name of function
@@ -202,7 +201,12 @@ const VandocDriverData = t.struct({
     default: t.String,
     description: t.String
   }))
-  requires: t.list(t.String) // module:name it requires
+  // module:name it requires
+  // If no language provided in the begining, it will assume requirement within current language
+  // Otherwise with `language` can be referenced modules from any language
+  // Also, probably, we can accept a filename for scope definition
+  requires: t.list(t.String),
+  usedBy: t.list(t.String), // back-reference entities, which requires it. Maybe should be part of Vanrose
   returns: t.struct({
     types: t.list(t.String),
     description: t.String
@@ -211,8 +215,21 @@ const VandocDriverData = t.struct({
     types: t.list(t.String),
     description: t.String
   }))
-  examples: t.list(t.String),
-  snippet: t.String
+  examples: t.list(t.strcut({
+    language: t.String,
+    caption: t.String,
+    snippet: t.String
+  })),
+  comment: t.struct({
+    snippet: t.String.
+    linestart: t.Number,
+    lineend: t.Number
+  }),
+  code: t.struct({
+    snippet: t.String.
+    linestart: t.Number,
+    lineend: t.Number
+  }),
 }, { name: 'VandocDriverData', strict: true })
 ```
 
