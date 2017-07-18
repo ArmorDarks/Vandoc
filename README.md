@@ -159,8 +159,6 @@ For each comment block documentation occurrence, driver returns data with follow
 ```js
 const VandocDriverData = t.struct({
   language: t.String,
-  filepath: t.String,
-  position: t.Number // in which order appears in source code
   type: t.String,
   name: t.String, // function name
   alias: t.String, // displayed name of function
@@ -190,7 +188,7 @@ const VandocDriverData = t.struct({
   global: t.Boolean,
   tags: t.list(t.String),
   constant: t.union([t.String, t.Boolean]),
-  variations: t.list(t.struct({
+  modifiers: t.list(t.struct({ // should it make to Vandoc? KSS-specific thing
     snippet: t.String,
     description: t.String
   }))
@@ -215,18 +213,26 @@ const VandocDriverData = t.struct({
     types: t.list(t.String),
     description: t.String
   }))
-  examples: t.list(t.strcut({
+  examples: t.list(t.strcut({ // also serves as Markup from KSS
     language: t.String,
     caption: t.String,
     snippet: t.String
   })),
+  source: t.struct({
+    snippet: t.String, // maybe redundant, since can be assembled from comment and code
+    linestart: t.Number,
+    lineend: t.Number
+    position: t.Number // in which order appears in source code
+    filepath: t.String,
+    filename: t.String,
+  }),
   comment: t.struct({
-    snippet: t.String.
+    snippet: t.String,
     linestart: t.Number,
     lineend: t.Number
   }),
   code: t.struct({
-    snippet: t.String.
+    snippet: t.String,
     linestart: t.Number,
     lineend: t.Number
   }),
