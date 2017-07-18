@@ -119,17 +119,17 @@ Simple example in Nunjucks
 
 ## Supported languages
 
-Out of box Vandoc is language agnostic and it doesn't know how to deal with your codebase. To make it work, you need to install drivers for languages from which you intend to extract documentation comment blocks or write your own driver.
+Out of box Vandoc is language agnostic and does not know how to deal with your codebase. To make Vandoc recognize languages and docummentation methods they use, install appropriate drivers, or write your own driver.
 
-Currently available drivers:
+Planned drivers:
 
-* [JavaScript](#t)
-* [Nunjucks](#t)
-* [Sass (SCSS)](#t)
+* [JavaScript (JSDocs)](#placeholder)
+* [Nunjucks (JSDocs)](#placeholder)
+* [Sass (subset of JSDocs)](#placeholder)
 
 ## Vandoc data structure
 
-Vandoc data is core of whole library. It ensures that collected by drivers data is nicely formatted and easy to work with. It isn't just an AST, but a full-purpose object with list of all collected blocks and meaningful properties for each block.
+Vandoc data is core of whole library. It ensures that collected by drivers data is nicely formatted and easy to work with. It isn't just an AST, but a full-purpose object with list of all collected entities and describing set of properties for each entity.
 
 Despite it fearsome name, Vandoc data is just an plain old Object, which can be exported into any format and later used by developer for generating his own documentation pages, whether be it statically generated website with Nunjucks, or some SPA.
 
@@ -139,12 +139,12 @@ Vandoc gathers all [drivers data](#drivers-data-sturcture) in following Vandoc d
 const VandocData = t.dict(Namepath, VandocDriverData)
 ```
 
-Where `Namepath` is generated for each entry by Vandoc path by processing all `module`, `memberof`, `namespace`, and `filepath` properties of driver results.
+Where `Namepath` is generated for each entry by Vandoc path by processing all `language`, `module`, `memberof`, `namespace`, and `source.filepath` properties of driver results.
 
 Example of such `Namepath`
 
 ```
-nunjucks:moduleName.nameSpaceName.functionName
+nunjucks:moduleName/path.nameSpaceName.functionName
 ```
 
 As in JSDocs, whenever driver and language supports it, Vandoc can generate paths for accessing inner methods:
@@ -158,15 +158,15 @@ As in JSDocs, whenever driver and language supports it, Vandoc can generate path
 
 `Namepath` also injected by Vandoc into each entry under `namepath` property for easier access.
 
-Namepath serves as an sort of `id`, which allows to access or link specific blocks whenever needed.
+Namepath serves as an sort of `id`, which allows to access or link specific blocks.
 
 ### Drivers data structure
 
-Idea of returned by drivers data structure mostly based on JSDocs. It tries to be broad to support vast majority of currently popular languages which might require documentation, including even templating languages and CSS.
+Idea of returned by drivers data structure mostly based on JSDocs. It tries to be broad to support vast majority of popular languages which might require documentation, including even templating languages and CSS.
 
-Note, that structure is strict and enforced by Vandoc, but many values might be optional and depends on language.
+Structure data is strict and does not allow additional properties to ensure that developers always receive data in same format, but it is eligible for expansion in future Vandoc releases if some language can not express its entities without such additions.
 
-For each comment block documentation occurrence, driver returns data with following structure:
+For each entity with documentation occurrence, driver returns data with following structure:
 
 ```js
 const VandocDriverData = t.struct({
