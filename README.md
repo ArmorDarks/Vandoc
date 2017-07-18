@@ -343,19 +343,3 @@ Head to [Vanrose repository](https://github.com/ArmorDarks/Vanrose) for details.
 * http://usejsdoc.org/
 * Remains of CSSDoc http://webkrauts.de/artikel/2007/stylesheets-kommentieren-mit-cssdoc
 * https://doclets.io/
-
-## Possible names:
-
-* Ico
-* Icon
-* Icona
-* Iconr
-* View
-* Vango — ref Vanga, `farsees your docs`
-* Vandoc — Van Helsing hunts for Vampires, Van Doc hunts for Docs.
-* Vandocing
-* VanHeldoc
-
-## Possible logo
-
-Large white open eye on pointing down pale-pink triangle
