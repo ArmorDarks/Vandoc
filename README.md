@@ -159,8 +159,27 @@ For each comment block documentation occurrence, driver returns data with follow
 ```js
 const VandocDriverData = t.struct({
   language: t.String,
+  source: t.struct({
+    snippet: t.String, // maybe redundant, since can be assembled from comment and code
+    linestart: t.Number,
+    lineend: t.Number
+    position: t.Number // in which order appears in source code
+    filepath: t.String,
+    filename: t.String,
+  }),
+  comment: t.struct({
+    snippet: t.String, // raw comment
+    linestart: t.Number,
+    lineend: t.Number
+  }),
+  code: t.struct({
+    snippet: t.String, // raw code block, mostly useful for CSS rulesets
+    body: t.String // body of the function (only for functions, mixins etc.)
+    linestart: t.Number,
+    lineend: t.Number
+  }),
   type: t.String,
-  name: t.String, // function name
+  name: t.String, // function name or selector
   alias: t.String, // displayed name of function
   description: t.String,
   version: t.String,
@@ -217,25 +236,7 @@ const VandocDriverData = t.struct({
     language: t.String,
     caption: t.String,
     snippet: t.String
-  })),
-  source: t.struct({
-    snippet: t.String, // maybe redundant, since can be assembled from comment and code
-    linestart: t.Number,
-    lineend: t.Number
-    position: t.Number // in which order appears in source code
-    filepath: t.String,
-    filename: t.String,
-  }),
-  comment: t.struct({
-    snippet: t.String,
-    linestart: t.Number,
-    lineend: t.Number
-  }),
-  code: t.struct({
-    snippet: t.String,
-    linestart: t.Number,
-    lineend: t.Number
-  }),
+  }))
 }, { name: 'VandocDriverData', strict: true })
 ```
 
