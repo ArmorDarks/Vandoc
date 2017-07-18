@@ -23,7 +23,7 @@ What it does not:
 
 ## The Reasons
 
-Vandoc dedicated to creating single, unified interface for working with any language and any documentation methods which will return only pure reusable data, and nothing more.
+Vandoc dedicated to creating single, unified interface for working with any language and any documentation method which will return only pure reusable data, and nothing more.
 
 Its purpose is to be easily integrable documentation tool into existing environments, with already defined structure and means of views rendering, be it static site generation, React-driven SPA application, or anything else. Since the result of Vandoc work is pure data, it can be used anywhere and anyhow.
 
@@ -33,7 +33,7 @@ Vandoc takes another approach and does not provide any means for endpoint docume
 
 Another issue with current tools is that mixed codebase requires different tools to generate documentation. Got CSS and JavaScript? You will need to generate docs with one tools (and its whole ecosystem) for one language, and with completely another tool for another. Not to mention increased payload on already stated issue with integration in current environment. Beside, such wide detachment of documentation tools from each other and current environment makes it really hard to express true relationships between elements from different ecosystems, like CSS and React components.
 
-Vandoc does not make any assumptions nor about your codebase languages, nor about documentation methods those languages use. In fact, out of box Vandoc doesn't know how to deal with any language at all. But Vandoc drivers does. Drivers makes Vandoc understand any kind of language and its specific documentation ways, they are fully responsible for parsing and returning appropriate data. Since documentation tool no longer directly attached to your language or its documentation approach, be it comment blocks or some static typing system like Flow or TypeScript, single instance of Vandoc applicable almost for any language and documentation method flavour is just a matter of driver choice.
+Vandoc does not make any assumptions nor about your codebase languages, nor about documentation methods those languages use. In fact, out of box Vandoc doesn't know how to deal with any language at all. But Vandoc drivers do. Drivers makes Vandoc understand any kind of language and its specific documentation ways, they are fully responsible for parsing and returning appropriate data. Since documentation tool no longer directly attached to your language or its documentation approach, be it comment blocks or some static typing system like Flow or TypeScript, single instance of Vandoc applicable almost for any language and documentation method flavour is just a matter of driver choice.
 
 This takes us to another point. Vandoc implies standardization and provides uniform interface for all languages and documentation methods. No matter what language, what documentation methods it use, what drivers do internally to extract it, the result should be data with uniform, the only accepted by Vandoc structure.
 
