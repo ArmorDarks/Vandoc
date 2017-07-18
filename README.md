@@ -1,33 +1,45 @@
-Vandoc
-------
+Vandoc (concept)
+----------------
 
 > Van Helsing hunts for vampires, Van Doc hunts for your docs.
 
-Environment and language-agnostic Node tool to get documentation out of files as reusable data.
+Environment and language-agnostic Node tool to get documentation out of codebase files as reusable data.
 
 [See supported right now languages](#supported-languages).
 
-_So far it is only initial draft._
+What it does:
 
-## Purpose
+* Provides a unified input and output interface to work with your codebase documentation independently of languages syntax or documentation methods.
+* Orchestrate and runs your whole codebase against Vandoc drivers.
+* Forms and returns strictly structured object with all your codebase documentation data, for all languages.
 
-Vandoc intended to be used in environment, when you need to integrate documentation tools with already existing structure (static site generation, server-side rendering etc).
+What it does not:
 
-Most popular tools doesn't fit that purpose well, since usually they comes with already built-in documentation pages generators, dev servers and enforcing some specific structure, rolling out their own syntax. All this makes them quite difficult adapt for projects needs, impossible to integrate into existing environment without undesired parts and features and forces to support not only website's specific templating, layout, styles, but also documentation tools' one.
+* Does not make any assumptions about your languages syntax. Vandoc drivers do.
+* Does not make any assumptions about how you document your code. Vandoc drivers do.
+* Does not know how to parse and extract documentation from your codebase. Vandoc drives do.
+* Does not generate documentation pages or styleguide. It should be done based on received Vandoc data, or by using Vandoc-driven tools.
+* Doest not do anything else.
 
-Vandoc takes another approach and does not provide any means for endpoint documentation generation. It is quite low-level tool and only scans your files for documentation (in most cases it is specific documentation comments blocks) and returns it as nicely formatted data, which can be used by any tool that can understand typical object data to output documentation pages whenever your designers wants and how your system can print them.
+## The Reasons
 
-Another issue with current tools is that if you have mixed codebase, you will be forced to use different tools to generate documentation. Got CSS and JavaScript? To bad for you, since you will need to generate docs with one tools (and its whole ecosystem) for one language, and with completely another tool for another. Not to mention twice payload on already stated issue with integration in current environment above.
+Vandoc dedicated to creating single, unified interface for working with any language and any documentation methods which will return only pure reusable data, and nothing more.
 
-Vandoc doesn't make any assumptions about your codebase. In fact, out of box it even doesn't know how to deal with any language. By adding Vandoc drivers or writing your own, allowing Vandoc to deal with any kind of language and its specific documentation ways, be it comment blocks or whatever, parse them and return appropriate data. Vandoc doesn't care what driver makes internally while it returns data in enforced by Vandoc uniform data structure.
+Its purpose is to be easily integrable documentation tool into existing environments, with already defined structure and means of views rendering, be it static site generation, React-driven SPA application, or anything else. Since the result of Vandoc work is pure data, it can be used anywhere and anyhow.
 
-This takes us to another point. Vandoc tries to provide uniform interface for all languages, and thus it implies that all drivers should return data with specific, uniform [Vandoc data structure](#vandoc-data-structure), which is easy to understand and easy to use. This make documentation generation very similar for most languages.
+Most popular tools does not fit that purpose well. They come with already built-in documentation pages generators, dev servers, enforcing specific structure and relaying on its own documentation methods. They are difficult to adapt for projects needs or gracefully integrate into existing environment. Since usually they end up living for their own, they require additional maintenance, completely detached from already existing project specific templates, layouts, styles.
 
-Vandoc data structure is quite broad and covers most needs of currently popular languages. Its based on [JSDoc](http://usejsdoc.org/) (and, thus, on Clojure Compiler) specifications with some minor additions, which allows effectively to describe almost any features in any language.
+Vandoc takes another approach and does not provide any means for endpoint documentation generation. It is low-level tool and only scans your files for documentation (in most cases it is specific documentation comments blocks) and returns it as nicely formatted data, which can be used later by existing project views to output documentation pages whenever your designers wants and how your system can.
 
-Note, that it doesn't restrict your comments or documentation format. It can be of any kind, but you just have to ensure that driver you use or write can parse them and that result of those documentations can then be dumped into Vandoc data structure.
+Another issue with current tools is that mixed codebase requires different tools to generate documentation. Got CSS and JavaScript? You will need to generate docs with one tools (and its whole ecosystem) for one language, and with completely another tool for another. Not to mention increased payload on already stated issue with integration in current environment. Beside, such wide detachment of documentation tools from each other and current environment makes it really hard to express true relationships between elements from different ecosystems, like CSS and React components.
 
-All this makes Vandoc ideal tools for cases, when you need to add documentation to your already existing project and make use of tools for pages output that already exist in project, or as low-level toolkit to build more common styleguide generation system with pluggable and wide languages syntaxes support.
+Vandoc does not make any assumptions nor about your codebase languages, nor about documentation methods those languages use. In fact, out of box Vandoc doesn't know how to deal with any language at all. But Vandoc drivers does. Drivers makes Vandoc understand any kind of language and its specific documentation ways, they are fully responsible for parsing and returning appropriate data. Since documentation tool no longer directly attached to your language or its documentation approach, be it comment blocks or some static typing system like Flow or TypeScript, single instance of Vandoc applicable almost for any language and documentation method flavour is just a matter of driver choice.
+
+This takes us to another point. Vandoc implies standardization and provides uniform interface for all languages and documentation methods. No matter what language, what documentation methods it use, what drivers do internally to extract it, the result should be data with uniform, the only accepted by Vandoc structure.
+
+[Vandoc data structure](#vandoc-data-structure) is broad and designed to describe effectively any popular language entities, be easy to understand and easy to use when generating your own documentation and styleguides. It is inspired by [JSDoc](http://usejsdoc.org/) specifications with some required additions to fit other languages. Standardized output gives freedom to internal language's documentation methods and ways, which tied to used driver, but ensures that end user (developer) always receive same formatted structured data, which can be safely used for documentation generation.
+
+All this to facilitate Vandoc purpose at being universal and adaptable documentation collection tool, ease integration into already existing projects, or being a low-level toolkit to build more common styleguide generation system with pluggable and wide languages syntaxes and documentation methods support.
 
 ## How to use
 
