@@ -265,45 +265,64 @@ const VandocDriverData = t.struct({
 * Gathers them into Object
 * Writes Object to file, to memory or console.logs, depending on settings for further use
 
-`vandoc(filepathGlob<string>, options<object>?)`
+`vandoc(input: string, options?: object)`
 
-* `filepathGlob` is a valid glob for files
-* `options` is optional configuration, with following properties:
+* `input: string` is a valid file glob or code to check.
 
-   * `cwd` — filepath, which will be used as current working directory, to which will be relative `filepathGlob`
+   `node_modules`, `jspm_packages`, `bower_components` and `.git` are ignored by default. 
 
-      `cwd` will also be substracted from all `Namepath` resolutions
+* `options?: object` is optional configuration, with following properties:
 
-      `extensions` — special mapping for cases, when you use non-standard or generic extensions, thus you will need to map them to specific drivers.
+  * `code?: boolean` — is input code or not. Mandatory only if input isn't glob, but a code.
+  * `codeFilename?: string` — which filename should be used for code. Might be needed only in case of passing into Vandoc code directly.
 
-      Example:
+  * `language?: string` — defines input as a specific language. It will ignore all drivers mapping and will try to load for all files driver for specified language.
+   
+     It is mandatory if input is a code, otherwise Vandoc won't be able to determinate which driver should be used.
 
-      ```js
-      extensions: {
-        html: 'nunjucks',
-        styles: 'scss'
-      }
-      ```
+  * `cwd?: string` — filepath, which will be used as current working directory, to which will be relative `filepathGlob`
 
-   * `drivers` — allows to define drivers options.
+     `cwd` will also be substracted from all `Namepath` resolutions
 
-      Example:
+  * `ignoreFiles?: string` — file glob to ignore.
 
-      ```js
-      drivers: {
-        html: {
-          options: {
-            ignoreBlocksWith: /^<-- IGNORE ME/
-          }
-        },
-      }
-      ```
+  * `extensions?: object` — special mapping for non-standard or generic extensions to  specific Vandoc drives.
+
+     Example:
+
+     ```js
+     extensions: {
+       html: 'nunjucks',
+       styles: 'scss'
+     }
+     ```
+
+  * `drivers?: object` — allows to define drivers options.
+
+     Example:
+
+     ```js
+     drivers: {
+       html: {
+         options: {
+           ignoreBlocksWith: /^<-- IGNORE ME/
+         }
+       },
+     }
+     ```
 
 #### Methods
 
-* `.hunt()` — makes Vandoc to run.
+* `.hunt()` — makes Vandoc to run. Not for his life, but through your codebase.
 
-   Returns `Promise` with prepared Vandoc data as result.
+   Returns `Promise` which resolves to object with following properties:
+
+      * `warnings?: object` - if any of drivers emited warnings, contains object with information about what driver emmited error and what it said.
+      * `results?: object` - results of Vandoc scan with [Vandoc data structure](#vandoc-data-structure)
+
+   Otherwise, if any of driver fails during parsing, Vandoc will reject with error passed from driver. Note, that Vandoc does on purpose errors as soon as encounters error, since there is no sense to finish scanning — results will be comprimised and unusuable anyway.
+
+   This method also will passtrhough warning from drivers, which won't result in errors, but will print directly to console. This can be useful, since this is the only way for drivers to inform about upcoming changes and depreciations.
 
 ### Vandoc Driver:
 
