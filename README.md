@@ -317,8 +317,8 @@ const VandocDriverData = t.struct({
 
    Returns `Promise` which resolves to object with following properties:
 
-      * `warnings?: object` - if any of drivers emited warnings, contains object with information about what driver emmited error and what it said.
-      * `results?: object` - results of Vandoc scan with [Vandoc data structure](#vandoc-data-structure)
+   * `warnings?: object` - if any of drivers emited warnings, contains object with information about what driver emmited error and what it said.
+   * `results?: object` - results of Vandoc scan with [Vandoc data structure](#vandoc-data-structure)
 
    Otherwise, if any of driver fails during parsing, Vandoc will reject with error passed from driver. Note, that Vandoc does on purpose errors as soon as encounters error, since there is no sense to finish scanning — results will be comprimised and unusuable anyway.
 
