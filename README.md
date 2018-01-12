@@ -1,3 +1,5 @@
+![Vandoc logo](https://user-images.githubusercontent.com/4460311/34879558-4ae1148c-f7b6-11e7-92b8-965be988f83f.png)
+
 Vandoc (concept)
 ----------------
 
